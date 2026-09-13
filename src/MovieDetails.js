@@ -10,43 +10,50 @@ function MovieDetails() {
 
   if (!movie) {
     return (
-      <div className="details-container">
+      <div className="details-page">
         <h1>Movie not found</h1>
 
-        <button onClick={() => navigate("/")}>
-          Back to Home
+        <button className="back-button" onClick={() => navigate("/")}>
+          ← Back to Home
         </button>
       </div>
     );
   }
 
   return (
-    <div className="details-container">
-      <button onClick={() => navigate("/")}>
-        ← Back to Home
-      </button>
+    <div className="details-page">
+      <div className="movie-details">
+        <img
+          src={movie.posterURL}
+          alt={movie.title}
+          className="details-poster"
+        />
 
-      <h1>{movie.title}</h1>
+        <div className="movie-info">
+          <h1>{movie.title}</h1>
 
-      <img
-        src={movie.posterURL}
-        alt={movie.title}
-        className="details-poster"
-      />
+          <p className="rating">⭐ {movie.rating}/5</p>
 
-      <p>{movie.description}</p>
+          <p className="description">{movie.description}</p>
 
-      <h2>Movie Trailer</h2>
+          <h2>Trailer</h2>
 
-      <iframe
-        width="560"
-        height="315"
-        src={movie.trailerLink}
-        title={`${movie.title} trailer`}
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      ></iframe>
+          <div className="trailer-container">
+            <iframe
+              src={movie.trailerLink}
+              title={`${movie.title} trailer`}
+              allowFullScreen
+            ></iframe>
+          </div>
+
+          <button
+            className="back-button"
+            onClick={() => navigate("/")}
+          >
+            ← Back to Home
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
